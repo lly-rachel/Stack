@@ -69,7 +69,7 @@ Status destroyLStack(LinkStack* s) {
 
 Status LStackLength(LinkStack* s, int* length) {
 
-	if (!s->top) {
+	if (s->top) {
 		*length = s->count;
 		return SUCCESS;
 	}
@@ -97,6 +97,7 @@ Status popLStack(LinkStack* s, ElemType* data) {
 	if (now) {
 		*data = now->data;
 		s->top = now->next;
+		free(now);
 		s->count--;
 		return SUCCESS;
 	}
